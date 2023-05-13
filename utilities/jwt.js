@@ -52,8 +52,7 @@ const verifyOtpToken = (otp, userOtp) => {
   try {
     const valid = verify(userOtp, process.env.JWT_SECRET);
 
-    if (valid.otp === otp) return true;
-    return false;
+    return valid.otp === otp;
   } catch (error) {
     console.error(error);
     return false;
