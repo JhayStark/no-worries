@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const dbConnect = require("./config/dbConnect");
 const cors = require("cors");
 const authRouter = require("./modules/auth/auth.routes");
+const userRouter = require("./modules/user/user.routes");
+const { verifyToken } = require("./utilities/jwt");
 
 dotenv.config();
 const app = express();
@@ -28,5 +30,6 @@ async function start() {
 }
 
 app.use("/auth", authRouter);
+app.use("/user", verifyToken, userRouter);
 
 start();

@@ -4,7 +4,6 @@ const {
   createOtpToken,
   verifyOtpToken,
   createToken,
-  verifyToken,
 } = require("../../utilities/jwt");
 
 function generateOtp() {
@@ -45,13 +44,12 @@ const login = async (req, res) => {
       return res.status(404).send("User not found");
     }
     const userOtp = user.otp;
-
     const isOtpValid = verifyOtpToken(otp, userOtp);
-
     if (!isOtpValid) {
       return res.status(401).send("Invalid OTP");
     }
-    const token = createToken(user._id);
+    const userId = user._id.toString();
+    const token = createToken(userId);
     return res.status(200).json({ token });
   } catch (error) {
     console.error(error);
