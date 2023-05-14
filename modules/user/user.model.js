@@ -30,16 +30,16 @@ const userSchema = new Schema(
       },
     },
     toDos: {
-      type: Array,
-      default: [],
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "ToDo",
     },
     interests: {
       type: Array,
       default: [],
     },
     history: {
-      type: Array,
-      default: [],
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ToDo",
     },
     otp: {
       type: String,

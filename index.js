@@ -1,5 +1,6 @@
-const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config();
+const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const dbConnect = require("./config/dbConnect");
@@ -8,7 +9,6 @@ const authRouter = require("./modules/auth/auth.routes");
 const userRouter = require("./modules/user/user.routes");
 const { verifyToken } = require("./utilities/jwt");
 
-dotenv.config();
 const app = express();
 
 app.use(express.json());

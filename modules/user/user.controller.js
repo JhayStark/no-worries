@@ -10,7 +10,7 @@ const updateUserProfile = async (req, res) => {
     return res.status(200).send("User updated successfully");
   } catch (error) {
     console.error(error);
-    return res.status(500).send("Internal server error");
+    return res.status(500).send("User update failed");
   }
 };
 
@@ -24,7 +24,7 @@ const addInterest = async (req, res) => {
     return res.status(200).send("Interest added successfully");
   } catch (error) {
     console.error(error);
-    return res.status(500).send("Internal server error");
+    return res.status(500).send("Interest was not added");
   }
 };
 
@@ -39,7 +39,7 @@ const removeInterest = async (req, res) => {
     return res.status(200).send("Interest removed successfully");
   } catch (error) {
     console.error(error);
-    return res.status(500).send("Internal server error");
+    return res.status(500).send("Interest was not removed");
   }
 };
 
