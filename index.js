@@ -8,6 +8,8 @@ const cors = require("cors");
 const authRouter = require("./modules/auth/auth.routes");
 const userRouter = require("./modules/user/user.routes");
 const { verifyToken } = require("./utilities/jwt");
+const serviceRouter = require("./modules/services/services.routes");
+const todDoRouter = require("./modules/toDo/toDo.routes");
 
 const app = express();
 
@@ -31,5 +33,7 @@ async function start() {
 
 app.use("/auth", authRouter);
 app.use("/user", verifyToken, userRouter);
+app.use("/service", verifyToken, serviceRouter);
+app.use("/todo", verifyToken, todDoRouter);
 
 start();

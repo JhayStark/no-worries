@@ -62,7 +62,6 @@ const deleteTodo = async (req, res) => {
 module.exports = {
   createTodo,
   deleteTodo,
-  completeToDos,
   getAllUserToDos,
   toggleToDoCompletion,
 };

@@ -2,14 +2,11 @@ const { Schema, model, default: mongoose } = require("mongoose");
 
 const toDoSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
+    service: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Service",
     },
-    location: {
-      type: String,
-      required: true,
-    },
+
     time: {
       type: String,
       required: true,
