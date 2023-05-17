@@ -1,12 +1,16 @@
-const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config();
+const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const dbConnect = require("./config/dbConnect");
 const cors = require("cors");
 const authRouter = require("./modules/auth/auth.routes");
+const userRouter = require("./modules/user/user.routes");
+const { verifyToken } = require("./utilities/jwt");
+const serviceRouter = require("./modules/services/services.routes");
+const todDoRouter = require("./modules/toDo/toDo.routes");
 
-dotenv.config();
 const app = express();
 
 app.use(express.json());
@@ -28,5 +32,8 @@ async function start() {
 }
 
 app.use("/auth", authRouter);
+app.use("/user", verifyToken, userRouter);
+app.use("/service", verifyToken, serviceRouter);
+app.use("/todo", verifyToken, todDoRouter);
 
 start();
