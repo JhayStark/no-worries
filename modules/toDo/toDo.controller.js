@@ -33,10 +33,11 @@ const getAllUserToDos = async (req, res) => {
 
 const toggleToDoCompletion = async (req, res) => {
   const userId = req.userId;
-  const { id } = req.params;
+  const { id } = req.query;
   try {
-    const toDo = await ToDo.findById({ id });
+    const toDo = await ToDo.findById(id);
     if (!toDo) return res.status(404).send("Todo not found");
+    console.log(toDo);
     const toDoState = toDo.completed;
     await toDo.updateOne({ completed: !toDoState });
     return res.status(200).send("Todo toggled");
@@ -48,11 +49,13 @@ const toggleToDoCompletion = async (req, res) => {
 
 const deleteTodo = async (req, res) => {
   const userId = req.userId;
+  const { id } = req.query;
+  console.log(id);
   try {
     const user = await User.findById(userId);
-    await ToDo.findOneAndDelete({ _id: req.params.id, userId });
-    await user.updateOne({ $pull: { todos: req.params.id } });
-    return res.status(204).send("Todo deleted");
+    await ToDo.findByIdAndDelete(id, { userId });
+    await user.updateOne({ $pull: { todos: id } });
+    return res.status(200).send("Todo deleted");
   } catch (error) {
     console.error(error);
     return res.status(500).send("Deleting todo failed");
