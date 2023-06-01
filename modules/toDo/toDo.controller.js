@@ -22,7 +22,7 @@ const createTodo = async (req, res) => {
 const getAllUserToDos = async (req, res) => {
   const userId = req.userId;
   try {
-    const toDos = await ToDo.find({ userId });
+    const toDos = await ToDo.find({ userId }).populate("service");
     if (!toDos) res.status(404).json({ toDos });
     return res.status(200).json({ toDos });
   } catch (error) {
