@@ -44,7 +44,7 @@ const searchService = async (req, res) => {
   }
 };
 
-const addService = async () => {
+const addService = async (req, res) => {
   const authenticated = req.authenticated;
   try {
     if (!authenticated)
