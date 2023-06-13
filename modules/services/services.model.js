@@ -27,6 +27,9 @@ const servicesSchema = new Schema(
       type: Array,
       default: [],
     },
+    description: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
