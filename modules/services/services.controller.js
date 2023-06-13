@@ -46,6 +46,8 @@ const searchService = async (req, res) => {
 
 const addService = async (req, res) => {
   const authenticated = req.authenticated;
+  const { title, tags, address, email, images, phoneNumber, description } =
+    req.body;
   try {
     if (!authenticated)
       return res.status(401).send("You are not authorized to create a route");
